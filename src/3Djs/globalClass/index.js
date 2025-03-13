@@ -4,6 +4,8 @@ import AddMeshes from './addMesh'
 import addLight from './addLight'
 import { ThreeCSGTest } from './CSGTest'
 import LoadModel from './loadModel'
+import { getMergedGeometry } from '../utils'
+import SimplePoint from './simplePoint.ts'
 
 class Init3D {
   constructor(container) {
@@ -29,7 +31,9 @@ class Init3D {
     new addLight(this.scene)
     this.loader = new LoadModel(this.scene)
 
-    this.createCube()
+    this.loadModel()
+
+    // this.createCube()
     // 渲染循环
     this.animate()
   }
@@ -46,6 +50,15 @@ class Init3D {
     setTimeout(() => {
       new ThreeCSGTest(this.scene, ['build'])
     }, 3000)
+  }
+
+  async loadModel() {
+    const obj = await this.loader.gltf_loader('/model/building/build.gltf')
+    console.log(obj)
+    this.build = obj.scene
+    this.scene.add(this.build)
+
+    const simple = new SimplePoint(this.scene, this.build)
   }
 
   animate() {
