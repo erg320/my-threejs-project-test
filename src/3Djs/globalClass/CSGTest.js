@@ -2,10 +2,11 @@ import * as THREE from 'three'
 import { CSG } from 'three-csg-ts'
 
 export class ThreeCSGTest {
-  constructor(scene, csgList) {
+  constructor(scene) {
     this.scene = scene
-    this.csgList = csgList
-    this.csgListCut()
+    // this.csgList = csgList
+    // this.csgListCut()
+    this.runTest()
   }
 
   runTest() {

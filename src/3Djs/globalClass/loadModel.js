@@ -1,4 +1,4 @@
-import { Mesh, MeshBasicMaterial, MeshStandardMaterial } from 'three'
+import { BackSide, EquirectangularReflectionMapping, Mesh, MeshBasicMaterial, MeshStandardMaterial, SphereGeometry, SRGBColorSpace, TextureLoader } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/Addons.js'
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 
@@ -7,6 +7,7 @@ export default class LoadModel {
     this.scene = scene
 
     this.loader = new GLTFLoader()
+    this.textureLoader = new TextureLoader()
   }
 
   // async loadModel() {
@@ -57,6 +58,22 @@ export default class LoadModel {
           })
         }
       })
+    })
+  }
+
+  async loadSky() {
+    this.textureLoader.load('/texture/sky/sky.jpg', (tx) => {
+      tx.mapping = EquirectangularReflectionMapping
+      tx.colorSpace = SRGBColorSpace
+
+      const skyGeo = new SphereGeometry(500, 60, 40)
+      const skyMat = new MeshBasicMaterial({
+        map: tx,
+        side: BackSide,
+      })
+
+      const sky = new Mesh(skyGeo, skyMat)
+      this.scene.add(sky)
     })
   }
 }
