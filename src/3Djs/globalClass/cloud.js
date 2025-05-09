@@ -4,53 +4,6 @@ import { BufferAttribute, Color, DynamicDrawUsage, Group, InstancedBufferAttribu
 // 默认云朵纹理URL
 const CLOUD_URL = 'https://rawcdn.githack.com/pmndrs/drei-assets/9225a9f1fbd449d9411125c2f419b843d0308c9f/cloud.png'
 
-// 云朵段的状态接口
-// interface CloudSegmentState {
-//   id: string;
-//   index: number;
-//   segments: number;
-//   dist: number;
-//   matrix: Matrix4;
-//   bounds: Vector3;
-//   position: Vector3;
-//   volume: number;
-//   length: number;
-//   ref: Group;
-//   speed: number;
-//   growth: number;
-//   opacity: number;
-//   fade: number;
-//   density: number;
-//   rotation: number;
-//   rotationFactor: number;
-//   color: Color;
-// }
-
-// // 云朵属性接口
-// export interface CloudOptions {
-//   seed?: number;
-//   segments?: number;
-//   bounds?: [number, number, number];
-//   concentrate?: 'random' | 'inside' | 'outside';
-//   volume?: number;
-//   smallestVolume?: number;
-//   distribute?: (cloud: CloudSegmentState, index: number) => { point: Vector3; volume?: number };
-//   growth?: number;
-//   speed?: number;
-//   fade?: number;
-//   opacity?: number;
-//   color?: string | number;
-// }
-
-// // 云朵组属性接口
-// export interface CloudsOptions {
-//   texture?: string;
-//   limit?: number;
-//   range?: number;
-//   material?: typeof Material;
-//   frustumCulled?: boolean;
-// }
-
 // 自定义云朵材质类
 class CloudMaterial extends MeshLambertMaterial {
   constructor() {
@@ -145,7 +98,7 @@ class CloudManager {
 
   // 添加云朵方法
   addCloud(position = new Vector3(), options = {}) {
-    const { opacity = 1, speed = 0, bounds = [5, 1, 1], segments = 20, color = '#ffffff', fade = 10, volume = 6, smallestVolume = 0.25, distribute = null, growth = 4, concentrate = 'inside', seed = Math.random() } = options
+    const { opacity = 0.3, speed = 0, bounds = [5, 1, 1], segments = 20, color = '#ffffff', fade = 10, volume = 6, smallestVolume = 0.25, distribute = null, growth = 4, concentrate = 'inside', seed = Math.random() } = options
 
     // 随机函数
     let seedValue = seed
