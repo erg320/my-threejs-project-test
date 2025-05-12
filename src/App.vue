@@ -1,9 +1,9 @@
 <script setup>
-import ThreeScene from './components/ThreeScene.vue'
+import PortalDemo from './components/PortalDemo.vue'
 </script>
 
 <template>
-  <ThreeScene />
+  <PortalDemo />
 </template>
 
 <style scoped></style>

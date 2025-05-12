@@ -10,6 +10,8 @@ import CloudManager from './cloud.js'
 import { MeshReflectorMaterial } from '../material/meshReflectorMaterial.js'
 import { TransScene } from './transScene.js'
 import { ScreenShareTexture, VirtualMeetingRoom } from '../material/screenShareTexture.js'
+import Portal from '../extensions/protal/index.js'
+import PortalDemo from '../extensions/protal/demo.js'
 
 class Init3D {
   constructor(container) {
@@ -53,6 +55,8 @@ class Init3D {
     // this.videoTextureTest()
 
     // new VirtualMeetingRoom(this.container, this.scene, this.camera, this.renderer, this.controls)
+
+    // new PortalDemo()
   }
 
   onWindowResize() {
